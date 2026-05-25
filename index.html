@@ -8,86 +8,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
-        
         body { font-family: 'Inter', system-ui, sans-serif; }
         .heading-font { font-family: 'Space Grotesk', sans-serif; }
-
         .hero-bg { background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%); }
-        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4); }
-
-        .nav-link { position: relative; }
-        .nav-link:after {
-            content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0;
-            background-color: rgb(0 243 255); transition: all 0.3s ease;
-        }
-        .nav-link:hover:after { width: 100%; }
+        .card-hover:hover { transform: translateY(-8px); }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-200">
 
-    <!-- NAVBAR -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-lg border-b border-zinc-800">
         <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
             <div class="flex items-center gap-3">
                 <div class="w-9 h-9 bg-cyan-500 rounded-2xl flex items-center justify-center text-black font-bold text-2xl">J</div>
                 <div class="heading-font text-3xl font-semibold tracking-tighter">JAD <span class="text-cyan-400">ALPHA</span></div>
             </div>
-            
-            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
-                <a href="#strategies" class="nav-link">Strategies</a>
-                <a href="#performance" class="nav-link">Performance</a>
-                <a href="#platform" class="nav-link text-cyan-400">Platform</a>
-                <a href="#about" class="nav-link">About</a>
+            <div class="hidden md:flex gap-10 text-sm">
+                <a href="#strategies" class="hover:text-cyan-400">Strategies</a>
+                <a href="#performance" class="hover:text-cyan-400">Performance</a>
+                <a href="#platform" class="text-cyan-400">Platform</a>
+                <a href="#about" class="hover:text-cyan-400">About</a>
             </div>
-
-            <div class="flex items-center gap-4">
-                <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
-                        class="px-6 py-3 text-sm font-semibold border border-zinc-700 hover:border-cyan-400 rounded-2xl">
-                    Get Access
-                </button>
-                <button onclick="showLoginModal()" 
-                        class="bg-white text-black px-6 py-3 text-sm font-semibold rounded-2xl hover:bg-cyan-400">
-                    Client Login
-                </button>
-            </div>
+            <button onclick="showLoginModal()" class="bg-white text-black px-6 py-3 rounded-2xl font-semibold hover:bg-cyan-400">
+                Client Login
+            </button>
         </div>
     </nav>
 
     <!-- HERO -->
     <section class="hero-bg min-h-screen flex items-center pt-20">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-            <div class="space-y-8">
-                <div class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-700 rounded-full px-5 py-2 text-sm">
-                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                    Live Alpha Generation
-                </div>
-                
-                <h1 class="heading-font text-7xl md:text-8xl font-bold tracking-tighter leading-none">
-                    Alpha that<br>actually <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">compounds</span>
-                </h1>
-                
-                <p class="text-2xl text-zinc-400 max-w-lg">
-                    Institutional-grade trading strategies powered by quantitative research, machine learning, and decades of market experience.
-                </p>
-                
-                <div class="flex flex-wrap gap-5">
-                    <button onclick="document.getElementById('platform').scrollIntoView({ behavior: 'smooth' })" 
-                            class="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-10 py-5 rounded-3xl text-lg">
-                        Enter Platform
-                    </button>
-                </div>
-            </div>
-
-            <div class="relative">
-                <div class="bg-zinc-900/50 border border-zinc-700/50 rounded-3xl p-8">
-                    <div class="h-96 rounded-2xl bg-gradient-to-br from-zinc-800 to-black flex items-center justify-center">
-                        <div class="text-center">
-                            <div class="text-emerald-400 text-7xl font-mono font-bold">+142.7%</div>
-                            <p class="text-zinc-400 mt-3">Since Inception • March 2023</p>
-                        </div>
-                    </div>
-                </div>
+            <div>
+                <h1 class="heading-font text-6xl md:text-7xl font-bold leading-none">Alpha that actually compounds</h1>
+                <p class="mt-6 text-xl text-zinc-400">Institutional trading strategies with real performance.</p>
+                <button onclick="document.getElementById('platform').scrollIntoView({behavior:'smooth'})" 
+                        class="mt-8 bg-cyan-500 text-black px-8 py-4 rounded-2xl font-semibold">
+                    Open Platform
+                </button>
             </div>
         </div>
     </section>
@@ -95,36 +51,39 @@
     <!-- PLATFORM -->
     <section id="platform" class="py-28 bg-zinc-900">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="heading-font text-6xl font-semibold tracking-tighter">JAD Alpha Platform</h2>
-                <p class="text-zinc-400 mt-4">Real-time strategy monitoring & trading signals</p>
-            </div>
+            <h2 class="text-5xl font-bold text-center heading-font">JAD Alpha Platform</h2>
+            <p class="text-center text-zinc-400 mt-4">Live Strategies & Signals</p>
 
-            <!-- Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-                <div class="bg-zinc-950 p-6 rounded-3xl"><p class="text-zinc-400">AUM</p><p class="text-3xl font-bold">$8.47M</p></div>
-                <div class="bg-zinc-950 p-6 rounded-3xl"><p class="text-emerald-400">Today's P&amp;L</p><p class="text-3xl font-bold text-emerald-400">+$124k</p></div>
-                <div class="bg-zinc-950 p-6 rounded-3xl"><p class="text-zinc-400">Active</p><p class="text-3xl font-bold">7 Strategies</p></div>
-                <div class="bg-zinc-950 p-6 rounded-3xl"><p class="text-zinc-400">Sharpe</p><p class="text-3xl font-bold text-cyan-400">3.12</p></div>
-            </div>
-
-            <h3 class="text-2xl font-semibold mb-8">Live Strategies</h3>
-            <!-- Strategy cards here (same as before) -->
-            <!-- I'll keep it short for now. You can tell me if you want more. -->
-
-            <div class="text-center mt-12">
-                <p class="text-emerald-400 text-lg">✅ Login with demo@jadalpha.com / demo123 to test the platform</p>
+            <div class="mt-12 text-center">
+                <p class="text-emerald-400">Click "Client Login" → Use any email and click Sign In</p>
             </div>
         </div>
     </section>
 
+    <!-- Login Modal -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50">
+        <div class="bg-zinc-900 p-8 rounded-3xl w-full max-w-md">
+            <h2 class="text-2xl font-bold text-center">Client Portal</h2>
+            <div class="mt-6 space-y-4">
+                <input type="email" id="email" placeholder="Email" class="w-full p-4 bg-zinc-800 rounded-2xl" value="demo@jadalpha.com">
+                <input type="password" id="pass" placeholder="Password" class="w-full p-4 bg-zinc-800 rounded-2xl" value="123">
+                <button onclick="fakeLogin()" class="w-full bg-cyan-500 text-black py-4 rounded-2xl font-bold">Sign In</button>
+            </div>
+            <p onclick="hideModal()" class="text-center mt-6 text-zinc-400 cursor-pointer">Cancel</p>
+        </div>
+    </div>
+
     <script>
         function showLoginModal() {
-            const email = prompt("Demo Email: demo@jadalpha.com\nPassword: demo123\n\nEnter Email:");
-            if (email) {
-                alert("✅ Login Successful! Welcome to JAD Alpha Platform");
-                document.getElementById('platform').scrollIntoView({ behavior: 'smooth' });
-            }
+            document.getElementById('loginModal').classList.remove('hidden');
+        }
+        function hideModal() {
+            document.getElementById('loginModal').classList.add('hidden');
+        }
+        function fakeLogin() {
+            hideModal();
+            alert("✅ Login Successful!\nWelcome to JAD Alpha Platform (Demo Mode)");
+            document.getElementById('platform').scrollIntoView({ behavior: "smooth" });
         }
     </script>
 </body>
