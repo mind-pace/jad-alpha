@@ -12,6 +12,7 @@
         .heading-font { font-family: 'Space Grotesk', sans-serif; }
         .hero-bg { background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%); }
         .card-hover:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4); }
+        .locked { filter: blur(8px); pointer-events: none; opacity: 0.6; }
     </style>
 </head>
 <body class="bg-zinc-950 text-zinc-200">
@@ -24,14 +25,15 @@
                 <div class="heading-font text-3xl font-semibold tracking-tighter">JAD <span class="text-cyan-400">ALPHA</span></div>
             </div>
             
-            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
-                <a href="#strategies" class="nav-link">Strategies</a>
-                <a href="#performance" class="nav-link">Performance</a>
-                <a href="#platform" class="nav-link text-cyan-400">Platform</a>
-                <a href="#about" class="nav-link">About</a>
+            <div id="navLinks" class="hidden md:flex items-center gap-10 text-sm font-medium">
+                <a href="#strategies" class="hover:text-cyan-400">Strategies</a>
+                <a href="#performance" class="hover:text-cyan-400">Performance</a>
+                <a href="#platform" class="hover:text-cyan-400">Platform</a>
+                <a href="#about" class="hover:text-cyan-400">About</a>
             </div>
 
-            <button onclick="showAuthModal()" class="bg-white text-black px-6 py-3 rounded-2xl font-semibold hover:bg-cyan-400">
+            <button onclick="showAuthModal()" id="authButton"
+                    class="bg-white text-black px-6 py-3 rounded-2xl font-semibold hover:bg-cyan-400">
                 Client Login / Sign Up
             </button>
         </div>
@@ -39,88 +41,52 @@
 
     <!-- HERO -->
     <section class="hero-bg min-h-screen flex items-center pt-20">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-            <div class="space-y-8">
-                <div class="inline-flex items-center gap-2 bg-zinc-900 border border-zinc-700 rounded-full px-5 py-2 text-sm">
-                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-                    Live Alpha Generation
-                </div>
-                <h1 class="heading-font text-7xl md:text-8xl font-bold tracking-tighter leading-none">
-                    Alpha that<br>actually <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">compounds</span>
-                </h1>
-                <p class="text-2xl text-zinc-400">Institutional-grade systematic trading strategies.</p>
-                <button onclick="document.getElementById('strategies').scrollIntoView({ behavior: 'smooth' })" 
-                        class="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-10 py-5 rounded-3xl text-lg">
-                    Explore Strategies
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- STRATEGIES SECTION -->
-    <section id="strategies" class="py-28 bg-zinc-900">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="heading-font text-6xl font-bold tracking-tighter">Our Trading Strategies</h2>
-                <p class="text-zinc-400 mt-4 text-xl">Choose from proven, systematic strategies</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Strategy 1 -->
-                <div class="bg-zinc-950 border border-zinc-700 rounded-3xl p-8 card-hover">
-                    <div class="h-2 w-16 bg-cyan-400 rounded mb-6"></div>
-                    <h3 class="text-2xl font-semibold">Neural Alpha</h3>
-                    <p class="text-emerald-400 text-sm mt-1">AI • Deep Learning</p>
-                    <p class="mt-6 text-zinc-400">Transformer-based model trained on tick data for high-frequency and swing trading.</p>
-                    <div class="mt-8 grid grid-cols-3 gap-4 text-center">
-                        <div><div class="text-emerald-400 font-mono text-xl">+63%</div><div class="text-xs text-zinc-500">Return</div></div>
-                        <div><div class="text-cyan-400 font-mono text-xl">3.4</div><div class="text-xs text-zinc-500">Sharpe</div></div>
-                        <div><div class="text-amber-400 font-mono text-xl">12%</div><div class="text-xs text-zinc-500">DD</div></div>
-                    </div>
-                    <button onclick="viewStrategyDetail('Neural Alpha')" class="mt-10 w-full py-4 border border-cyan-400 text-cyan-400 rounded-2xl hover:bg-cyan-400 hover:text-black transition">Learn More →</button>
-                </div>
-
-                <!-- Strategy 2 -->
-                <div class="bg-zinc-950 border border-zinc-700 rounded-3xl p-8 card-hover">
-                    <div class="h-2 w-16 bg-orange-400 rounded mb-6"></div>
-                    <h3 class="text-2xl font-semibold">Momentum Alpha</h3>
-                    <p class="text-emerald-400 text-sm mt-1">Trend Following</p>
-                    <p class="mt-6 text-zinc-400">Multi-timeframe momentum with volatility regime filter across equities and futures.</p>
-                    <div class="mt-8 grid grid-cols-3 gap-4 text-center">
-                        <div><div class="text-emerald-400 font-mono text-xl">+42%</div><div class="text-xs text-zinc-500">Return</div></div>
-                        <div><div class="text-cyan-400 font-mono text-xl">3.1</div><div class="text-xs text-zinc-500">Sharpe</div></div>
-                        <div><div class="text-amber-400 font-mono text-xl">18%</div><div class="text-xs text-zinc-500">DD</div></div>
-                    </div>
-                    <button onclick="viewStrategyDetail('Momentum Alpha')" class="mt-10 w-full py-4 border border-orange-400 text-orange-400 rounded-2xl hover:bg-orange-400 hover:text-black transition">Learn More →</button>
-                </div>
-
-                <!-- Add more strategies as needed -->
-                <div class="bg-zinc-950 border border-zinc-700 rounded-3xl p-8 card-hover">
-                    <div class="h-2 w-16 bg-purple-400 rounded mb-6"></div>
-                    <h3 class="text-2xl font-semibold">Mean Reversion</h3>
-                    <p class="text-emerald-400 text-sm mt-1">Statistical Arb</p>
-                    <p class="mt-6 text-zinc-400">Cointegration and pairs trading using Kalman filters.</p>
-                    <div class="mt-8 grid grid-cols-3 gap-4 text-center">
-                        <div><div class="text-emerald-400 font-mono text-xl">+29%</div><div class="text-xs text-zinc-500">Return</div></div>
-                        <div><div class="text-cyan-400 font-mono text-xl">2.6</div><div class="text-xs text-zinc-500">Sharpe</div></div>
-                        <div><div class="text-amber-400 font-mono text-xl">14%</div><div class="text-xs text-zinc-500">DD</div></div>
-                    </div>
-                    <button onclick="viewStrategyDetail('Mean Reversion')" class="mt-10 w-full py-4 border border-purple-400 text-purple-400 rounded-2xl hover:bg-purple-400 hover:text-black transition">Learn More →</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PLATFORM SECTION (Shortened for space) -->
-    <section id="platform" class="py-28 bg-black">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="heading-font text-5xl font-bold">JAD Alpha Platform</h2>
-            <p class="text-xl text-zinc-400 mt-4">Live signals and strategy activation</p>
-            <button onclick="showAuthModal()" class="mt-10 bg-cyan-500 text-black px-10 py-5 rounded-3xl text-lg font-semibold">
-                Login to Access Platform
+        <div class="max-w-7xl mx-auto px-6 text-center md:text-left">
+            <h1 class="heading-font text-6xl md:text-7xl font-bold tracking-tighter leading-none">
+                Welcome to<br>JAD Alpha
+            </h1>
+            <p class="mt-6 text-xl text-zinc-300 max-w-xl mx-auto md:mx-0">
+                Login or create an account to access our institutional trading strategies and live platform.
+            </p>
+            <button onclick="showAuthModal()" 
+                    class="mt-10 bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-10 py-5 rounded-3xl text-lg">
+                Get Started →
             </button>
         </div>
     </section>
+
+    <!-- MAIN CONTENT (Hidden until login) -->
+    <div id="mainContent" class="hidden">
+
+        <!-- STRATEGIES -->
+        <section id="strategies" class="py-28 bg-zinc-900">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="heading-font text-6xl font-bold">Our Trading Strategies</h2>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-zinc-950 border border-zinc-700 rounded-3xl p-8 card-hover">
+                        <h3 class="text-2xl font-semibold">Neural Alpha</h3>
+                        <p class="text-emerald-400">AI Powered</p>
+                        <p class="mt-4 text-zinc-400">Deep learning model for high accuracy entries.</p>
+                        <div class="mt-6 text-emerald-400 font-mono text-3xl">+63.2%</div>
+                    </div>
+                    <!-- You can add more strategy cards here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- PLATFORM -->
+        <section id="platform" class="py-28 bg-black">
+            <div class="max-w-7xl mx-auto px-6">
+                <h2 class="heading-font text-5xl font-bold text-center">Live Trading Platform</h2>
+                <p class="text-center text-zinc-400 mt-4">Real-time signals and strategy management</p>
+                <!-- Add your previous platform content here -->
+            </div>
+        </section>
+
+        <!-- PERFORMANCE, ABOUT etc. can be added similarly -->
+    </div>
 
     <!-- AUTH MODAL -->
     <div id="authModal" class="hidden fixed inset-0 bg-black/80 z-[100] flex items-center justify-center">
@@ -131,15 +97,15 @@
             </div>
 
             <div id="loginForm">
-                <input type="email" value="demo@jadalpha.com" class="w-full px-6 py-5 bg-zinc-800 rounded-2xl mb-4">
-                <input type="password" value="123" class="w-full px-6 py-5 bg-zinc-800 rounded-2xl mb-6">
+                <input type="email" id="loginEmail" value="demo@jadalpha.com" class="w-full px-6 py-5 bg-zinc-800 rounded-2xl mb-4">
+                <input type="password" id="loginPass" value="123" class="w-full px-6 py-5 bg-zinc-800 rounded-2xl mb-6">
                 <button onclick="loginUser()" class="w-full bg-cyan-500 text-black py-5 rounded-2xl font-semibold">Sign In</button>
             </div>
 
             <div id="signupForm" class="hidden">
                 <input type="text" id="fullName" placeholder="Full Name" class="w-full px-6 py-5 bg-zinc-800 rounded-2xl mb-4">
-                <input type="email" placeholder="Email" class="w-full px-6 py-5 bg-zinc-800 rounded-2xl mb-4">
-                <input type="password" placeholder="Password" class="w-full px-6 py-5 bg-zinc-800 rounded-2xl mb-6">
+                <input type="email" id="signupEmail" placeholder="Email" class="w-full px-6 py-5 bg-zinc-800 rounded-2xl mb-4">
+                <input type="password" id="signupPass" placeholder="Password" class="w-full px-6 py-5 bg-zinc-800 rounded-2xl mb-6">
                 <button onclick="signupUser()" class="w-full bg-cyan-500 text-black py-5 rounded-2xl font-semibold">Create Account</button>
             </div>
 
@@ -148,6 +114,8 @@
     </div>
 
     <script>
+        let isLoggedIn = false;
+
         function showAuthModal() {
             document.getElementById('authModal').classList.remove('hidden');
             switchTab(0);
@@ -169,17 +137,26 @@
 
         function loginUser() {
             hideAuthModal();
-            alert("✅ Login Successful!\nWelcome to JAD Alpha");
-            document.getElementById('platform').scrollIntoView({ behavior: 'smooth' });
+            isLoggedIn = true;
+            unlockContent();
+            alert("✅ Login Successful!\nWelcome to JAD Alpha Platform");
         }
 
         function signupUser() {
+            const name = document.getElementById('fullName').value || "Trader";
             hideAuthModal();
-            alert("🎉 Account Created Successfully!");
+            isLoggedIn = true;
+            unlockContent();
+            alert(`🎉 Account Created Successfully!\nWelcome ${name}!`);
         }
 
-        function viewStrategyDetail(name) {
-            alert(`You clicked on: ${name}\n\nFull strategy details would open here (backtest, rules, allocation, etc.)`);
+        function unlockContent() {
+            document.getElementById('mainContent').classList.remove('hidden');
+            document.getElementById('navLinks').classList.remove('hidden');
+            document.getElementById('authButton').innerHTML = 'Dashboard <i class="fa-solid fa-arrow-right ml-2"></i>';
+            document.getElementById('authButton').onclick = () => {
+                document.getElementById('platform').scrollIntoView({ behavior: 'smooth' });
+            };
         }
     </script>
 </body>
